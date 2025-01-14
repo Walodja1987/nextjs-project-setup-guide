@@ -1,0 +1,1 @@
+# nextjs-project-setup-guide
