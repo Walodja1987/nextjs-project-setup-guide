@@ -10,7 +10,84 @@ This guide walks you through setting up a modern Next.js project with a powerful
 
 This setup provides a robust foundation for building scalable web applications with best practices and modern development tools.
 
-## Initial Repository Setup
+## System Requirements
+
+Before you begin, ensure your system meets these requirements:
+
+- **Node.js**: >= 18.18.0 (LTS recommended)
+  ```bash
+  # Check your Node.js version
+  node -v
+
+  # ---------------------------------------------------------------------------------
+  # If you don't have Node.js installed, you can install it using the following commands:
+
+  # Option 1: Download from nodejs.org
+  # Visit https://nodejs.org and download LTS version
+  
+  # Option 2: Using nvm (Node Version Manager)
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+  nvm install 18.18.0
+  nvm use 18.18.0
+  ```
+
+- **Git**: Latest version recommended
+  ```bash
+  # Check your Git version
+  git --version
+  
+  # ---------------------------------------------------------------------------------
+  # If you don't have Git installed, you can install it using the following commands:
+
+  # Install Git:
+  # On macOS (using Homebrew)
+  brew install git
+  
+  # On Ubuntu/Debian
+  sudo apt-get update
+  sudo apt-get install git
+  
+  # On Windows
+  # Download from https://git-scm.com/download/win
+  ```
+
+- **Yarn**: Latest version (comes with Node.js)
+  ```bash
+  # Check your Yarn version
+  yarn -v
+  
+  # ---------------------------------------------------------------------------------
+  # If you don't have Yarn installed, you can install it using the following commands:
+
+  # Install Yarn globally
+  npm install -g yarn
+  ```
+
+## Quick Setup
+
+For automated setup, you can use the provided shell script:
+
+```bash
+./nextjs-project-setup-guide/setup-nextjs-project.sh my-project
+```
+
+> **Note:** Run this command from the parent directory of `nextjs-project-setup-guide`. The script will create a new directory with your project name and set up everything according to this guide.
+
+After running the script, connect your project to GitHub:
+
+1. Create a new repository on GitHub
+2. Connect your local repository:
+```bash
+git remote add origin <repository-url>
+git branch -M main
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+```
+
+## Manual Setup
+
+### Initial Repository Setup
 
 1. Go to GitHub and create a new repository.
 
@@ -25,7 +102,7 @@ git clone <repository-url>
 cd <repository-name>
 ```
 
-## Node.js
+### Node.js
 
 Make sure Node.js version >= 18.18.0 is installed. To check your Node.js version, run:
 
@@ -35,7 +112,7 @@ node -v
 
 For convenience, you can create a `.nvmrc` file and enter the Node.js version there (e.g. `18.18.0`) to automatically use when running `nvm use`.
 
-## Next.js setup
+### Next.js setup
 
 Run the following command to create a Next.js project using TypeScript, Tailwind CSS, and ESLint in the current directory (`.`):
 

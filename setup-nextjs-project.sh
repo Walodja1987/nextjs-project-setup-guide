@@ -9,6 +9,13 @@ fi
 
 REPO_NAME=$1
 
+# Check if directory already exists
+if [ -d "$REPO_NAME" ]; then
+    echo "Error: Directory '$REPO_NAME' already exists"
+    echo "Please choose a different name or delete the existing directory"
+    exit 1
+fi
+
 # Check Node.js version
 required_version="18.18.0"
 current_version=$(node -v | cut -d 'v' -f 2)
@@ -25,9 +32,6 @@ cd "$REPO_NAME"
 # Initialize git
 git init
 
-# Create .nvmrc
-echo "18.18.0" > .nvmrc
-
 # Create Next.js project with specified options
 yarn create next-app . \
     --typescript \
@@ -36,16 +40,19 @@ yarn create next-app . \
     --src-dir \
     --app \
     --import-alias "@/*" \
-    --no-turbo
+    --no-turbopack
 
-# Initialize shadcn-ui
-npx shadcn-ui@latest init -y
+# Create .nvmrc
+echo "18.18.0" > .nvmrc
+
+# Initialize shadcn
+npx shadcn@latest init -y --no-css-variables
 
 # Add common shadcn components
-npx shadcn-ui@latest add button -y
-npx shadcn-ui@latest add card -y
-npx shadcn-ui@latest add progress -y
-npx shadcn-ui@latest add table -y
+npx shadcn@latest add button -y
+npx shadcn@latest add card -y
+npx shadcn@latest add progress -y
+npx shadcn@latest add table -y
 
 # Install additional dependencies
 yarn add recharts clsx tailwind-merge
@@ -83,5 +90,12 @@ touch src/app/dashboard/page.tsx
 
 echo "✅ Project setup complete! Next steps:"
 echo "1. cd $REPO_NAME"
-echo "2. yarn dev"
-echo "3. Open http://localhost:3000"
+echo "2. Create a new repository on GitHub"
+echo "3. Connect to GitHub repository:"
+echo "   git remote add origin <repository-url>"
+echo "   git branch -M main                     # Rename default branch to 'main'"
+echo "   git add ."
+echo "   git commit -m \"Initial commit\""
+echo "   git push -u origin main"
+echo "4. yarn dev"
+echo "5. Open http://localhost:3000"
